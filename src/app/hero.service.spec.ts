@@ -24,20 +24,17 @@ describe('hero services spect', () => {
     })
 
     describe('getHero', () => {
-        it('should call get with correct URL', () => {
-
-            // call getHero
-            service.getHero(4).subscribe((heroe) => {
-                expect(heroe.id).toBe(4);
-            });
-
-            // test that the URl was correct
-            const req = httpTestingController.expectOne('api/heroes/4');
-            // el metodo flush nos dice que data enviaremos en el req, hace la funcion de definir nuestro payload
-            req.flush({id: 4, name: 'bymax', strengh: 100})
-            expect(req.request.method).toBe('GET'); // verifica el verbo del api que se esta ejecutando.
-            httpTestingController.verify();
-
-        });
+      it('should call get with correct URL', () => {
+          // call getHero
+          service.getHero(4).subscribe((heroe) => {
+              expect(heroe.id).toBe(4);
+          });
+          // test that the URl was correct
+          const req = httpTestingController.expectOne('api/heroes/4');
+          // el metodo flush nos dice que data enviaremos en el req, hace la funcion de definir nuestro payload
+          req.flush({id: 4, name: 'bymax', strengh: 100})
+          expect(req.request.responseType).toBe('GET'); // verifica el verbo del api que se esta ejecutando.
+          httpTestingController.verify();
+      });
     })
 })
